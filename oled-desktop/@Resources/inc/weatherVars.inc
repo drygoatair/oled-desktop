@@ -3,8 +3,8 @@
 Location                = Rotterdam
 ;UnitGroup options are: "us", "metric", "uk" and "base" - https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/
 UnitGroup               = metric
-WeatherObject           = {"queryCost":1,"latitude":51.9144,"longitude":4.48717,"resolvedAddress":"Rotterdam, Zuid-Holland, Nederland","address":"Rotterdam","timezone":"Europe/Amsterdam","tzoffset":2.0,"days":[{"datetime":"2024-07-10","datetimeEpoch":1720562400,"tempmax":21.7,"tempmin":16.9,"temp":18.9,"conditions":"Rain, Partially cloudy","description":"Partly cloudy throughout the day with rain in the morning and afternoon.","icon":"showers-day"},{"datetime":"2024-07-11","datetimeEpoch":1720648800,"tempmax":20.3,"tempmin":14.3,"temp":17.4,"conditions":"Partially cloudy","description":"Partly cloudy throughout the day.","icon":"partly-cloudy-day"},{"datetime":"2024-07-12","datetimeEpoch":1720735200,"tempmax":15.1,"tempmin":13.9,"temp":14.6,"conditions":"Rain, Overcast","description":"Cloudy skies throughout the day with a chance of rain.","icon":"rain"},{"datetime":"2024-07-13","datetimeEpoch":1720821600,"tempmax":15.9,"tempmin":14.2,"temp":15.1,"conditions":"Rain, Overcast","description":"Cloudy skies throughout the day with a chance of rain throughout the day.","icon":"rain"}],"alerts":[],"currentConditions":{"datetime":"15:55:00","datetimeEpoch":1720619700,"temp":21.2,"conditions":"Partially cloudy","icon":"partly-cloudy-day"}}
-LastRefresh             = 13365101448
+WeatherObject           ={"queryCost":1,"latitude":51.9144,"longitude":4.48717,"resolvedAddress":"Rotterdam, Zuid-Holland, Nederland","address":"Rotterdam","timezone":"Europe/Amsterdam","tzoffset":2.0,"days":[{"datetime":"2024-07-10","datetimeEpoch":1720562400,"tempmax":21.0,"tempmin":16.9,"temp":18.9,"conditions":"Rain, Partially cloudy","description":"Partly cloudy throughout the day with rain in the morning and afternoon.","icon":"showers-day"},{"datetime":"2024-07-11","datetimeEpoch":1720648800,"tempmax":20.6,"tempmin":14.6,"temp":17.6,"conditions":"Partially cloudy","description":"Partly cloudy throughout the day.","icon":"partly-cloudy-day"},{"datetime":"2024-07-12","datetimeEpoch":1720735200,"tempmax":15.7,"tempmin":13.8,"temp":14.7,"conditions":"Rain, Overcast","description":"Cloudy skies throughout the day with rain in the morning and afternoon.","icon":"rain"},{"datetime":"2024-07-13","datetimeEpoch":1720821600,"tempmax":16.0,"tempmin":14.3,"temp":15.1,"conditions":"Rain, Overcast","description":"Cloudy skies throughout the day with a chance of rain throughout the day.","icon":"rain"}],"alerts":[],"currentConditions":{"datetime":"21:55:00","datetimeEpoch":1720641300,"temp":17.9,"conditions":"Partially cloudy","icon":"partly-cloudy-day"}}
+LastRefresh             =13365123449
 RefreshEveryXMins       = 15
 
 ;-- Styling --;
@@ -25,6 +25,23 @@ ForecastIconSize        = 75
 
 LargeIconSize           = 32
 SmallIconSize           = 32
+
+ForecastStringFontS     = [#ForecastDateFontSize] * [#SizeMultiplyer]
+ForecastStringFontW     = [#ForecastStringFontS] * [#FontWidth]
+ForecastStringH         = [#ForecastStringFontS] * (2 + (2 / 3))
+
+ForecastIconS           = [#ForecastIconSize] * [#SizeMultiplyer]
+ForecastColumnW         = (#ForecastIconS# > (((#ForecastStringFontW#*6)*(#FontWidthMultiplyer#))+1) ? [#ForecastIconS] : (((#ForecastStringFontW#*6)*(#FontWidthMultiplyer#))+1))
+ForecastColumnH         = ([#ForecastStringH] * 2) + [#ForecastIconS] + ([#GapSize] * 2)
+
+CurrentDayIconS         = [#CurrentDayIconSize] * [#SizeMultiplyer]
+CurrentDayFontS         = [#CurrentDayFontSize] * [#SizeMultiplyer]
+CurrentDayRowH          = (#CurrentDayIconS# > ([#CurrentDayFontS] * 1.5) ? #CurrentDayIconS# : ([#CurrentDayFontS] * 1.5))
+
+WidgetNetW              = ([#ForecastColumnW] * 4) + ([#GapSize] * 3)
+WidgetW                 = [#WidgetNetW] + ([#Margin] * 2)
+WidgetNetH              = [#CurrentDayRowH] + [#ForecastColumnH] + [#GapSize]
+WidgetH                 = [#WidgetNetH] + ([#Margin] * 2)
 
 ;-- Weather data variables --;
 CurTemp                 = 0

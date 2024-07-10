@@ -28,3 +28,5 @@ This skin is also just a fun experiment for me to play around with, so expect so
 
 ## External plugins
 - [Rainmeter HttpRequest Plugin](https://github.com/ilsasdo/rainmeter-httprequest)
+- [MouseXY](https://forum.rainmeter.net/viewtopic.php?t=22900)
+- [ConfigActive](https://github.com/jsmorley/ConfigActive)
