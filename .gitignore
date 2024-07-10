@@ -1,0 +1,4 @@
+.venv/
+*.code-workspace
+*.py
+secrets.inc
