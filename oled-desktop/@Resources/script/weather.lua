@@ -15,8 +15,6 @@ function SetWeatherVariables()
     local weatherData = SKIN:GetVariable("WeatherObject")
     local weatherObject = json.decode(weatherData)
 
-    -- SKIN:Bang("!SetVariable", "WeatherObject", weatherData:GetStringValue())
-
     SKIN:Bang("!SetVariable", "CurTemp", Round(weatherObject.currentConditions.temp))
     SKIN:Bang("!SetVariable", "CurIcon", weatherObject.currentConditions.icon)
 
@@ -37,39 +35,39 @@ function SetWeatherVariables()
     end
 end
 
-function MakeWeatherObject()
-    local json = dofile(SKIN:MakePathAbsolute('json.lua'))
-    local currentTime = os.time()
-    local days = {}
-    for i = 1, 4 do
-        local day = {
-            datetime = os.date("%Y-%m-%d", currentTime + i * 86400),
-            datetimeEpoch = currentTime + i * 86400,
-            tempmax = 0,
-            tempmin = 0,
-            temp = 0,
-            conditions = "",
-            description = "",
-            icon = "unknown"
-        }
-        table.insert(days, day)
-    end
-    local weatherObject = {
-        queryCost = 1,
-        latitude = 0,
-        longitude = 0,
-        resolvedAddress = "",
-        address = "",
-        timezone = "",
-        tzoffset = 0.0,
-        days = days,
-        currentConditions = {
-            datetime = os.date("%H:%M:%S", currentTime),
-            datetimeEpoch = currentTime,
-            temp = 0,
-            conditions = "",
-            icon = "unknown"
-        }
-    }
-    return json.encode(weatherObject)
-end
+-- function MakeWeatherObject()
+--     local json = dofile(SKIN:MakePathAbsolute('json.lua'))
+--     local currentTime = os.time()
+--     local days = {}
+--     for i = 1, 4 do
+--         local day = {
+--             datetime = os.date("%Y-%m-%d", currentTime + i * 86400),
+--             datetimeEpoch = currentTime + i * 86400,
+--             tempmax = 0,
+--             tempmin = 0,
+--             temp = 0,
+--             conditions = "",
+--             description = "",
+--             icon = "unknown"
+--         }
+--         table.insert(days, day)
+--     end
+--     local weatherObject = {
+--         queryCost = 1,
+--         latitude = 0,
+--         longitude = 0,
+--         resolvedAddress = "",
+--         address = "",
+--         timezone = "",
+--         tzoffset = 0.0,
+--         days = days,
+--         currentConditions = {
+--             datetime = os.date("%H:%M:%S", currentTime),
+--             datetimeEpoch = currentTime,
+--             temp = 0,
+--             conditions = "",
+--             icon = "unknown"
+--         }
+--     }
+--     return json.encode(weatherObject)
+-- end
