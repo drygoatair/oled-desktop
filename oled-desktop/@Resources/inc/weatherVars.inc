@@ -1,11 +1,25 @@
 [Variables]
 ;-- API Variables --;
 Location                = Rotterdam
-;UnitGroup options are: "us", "metric", "uk" and "base" - https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/
+
+; UnitGroup options are: "us", "metric", "uk" and "base"
+; - https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/
 UnitGroup               = metric
-WeatherObject           ={"queryCost":1,"latitude":51.9144,"longitude":4.48717,"resolvedAddress":"Rotterdam, Zuid-Holland, Nederland","address":"Rotterdam","timezone":"Europe/Amsterdam","tzoffset":2.0,"days":[{"datetime":"2024-07-11","datetimeEpoch":1720648800,"tempmax":20.3,"tempmin":14.9,"temp":17.5,"conditions":"Partially cloudy","description":"Partly cloudy throughout the day.","icon":"partly-cloudy-day"},{"datetime":"2024-07-12","datetimeEpoch":1720735200,"tempmax":16.9,"tempmin":14.2,"temp":15.2,"conditions":"Rain, Overcast","description":"Cloudy skies throughout the day with rain in the morning and afternoon.","icon":"rain"},{"datetime":"2024-07-13","datetimeEpoch":1720821600,"tempmax":17.2,"tempmin":14.3,"temp":15.7,"conditions":"Rain, Partially cloudy","description":"Partly cloudy throughout the day with rain clearing later.","icon":"showers-day"},{"datetime":"2024-07-14","datetimeEpoch":1720908000,"tempmax":20.1,"tempmin":14.3,"temp":16.9,"conditions":"Partially cloudy","description":"Partly cloudy throughout the day.","icon":"partly-cloudy-day"}],"alerts":[],"currentConditions":{"datetime":"15:43:00","datetimeEpoch":1720705380,"temp":20.2,"conditions":"Partially cloudy","icon":"partly-cloudy-day"}}
-LastRefresh             =13365187501
+
+; URL broken down in parts
+UrlBase                 = https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/#Location#/next3days
+P1                      = "unitGroup=#UnitGroup#"
+P2                      = "elements=datetime%2CdatetimeEpoch%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Cconditions%2Cdescription%2Cicon"
+P3                      = "include=days%2Calerts%2Ccurrent"
+P4                      = "key=#ApiKey#"
+P5                      = "contentType=json"
+P6                      = "iconSet=icons2"
+
+; Settings
+LastRefresh             =13365220517
 RefreshEveryXMins       = 15
+RefreshEveryXSecs       = (#RefreshEveryXMins# * 60) + 4
+RefreshFlashStart       = 0
 
 ;-- Styling --;
 FontFace                = Share Tech Mono
@@ -44,30 +58,30 @@ WidgetNetH              = [#CurrentDayRowH] + [#ForecastColumnH] + [#GapSize]
 WidgetH                 = [#WidgetNetH] + ([#Margin] * 2)
 
 ;-- Weather data variables --;
-CurTemp                 = 0
-CurIcon                 = "unknown"
+CurTemp                 =14
+CurIcon                 =partly-cloudy-night
 
-D1MaxTemp               = 0
-D1MinTemp               = 0
-D1Icon                  = "unknown"
-D1DateString            = "Thu#CRLF#1 Jan"
+D1MaxTemp               =17
+D1MinTemp               =14
+D1Icon                  =rain
+D1DateString            =Fri.#CRLF#12 Jul
 D1Tooltip               = None
 
-D2MaxTemp               = 0
-D2MinTemp               = 0
-D2Icon                  = "unknown"
-D2DateString            = "Fri#CRLF#2 Jan"
+D2MaxTemp               =17
+D2MinTemp               =14
+D2Icon                  =showers-day
+D2DateString            =Sat.#CRLF#13 Jul
 D2Tooltip               = None
 
-D3MaxTemp               = 0
-D3MinTemp               = 0
-D3Icon                  = "unknown"
-D3DateString            = "Sat#CRLF#3 Jan"
+D3MaxTemp               =20
+D3MinTemp               =14
+D3Icon                  =partly-cloudy-day
+D3DateString            =Sun.#CRLF#14 Jul
 D3Tooltip               = None
 
-D4MaxTemp               = 0
-D4MinTemp               = 0
-D4Icon                  = "unknown"
-D4DateString            = "Sun#CRLF#4 Jan"
+D4MaxTemp               =25
+D4MinTemp               =14
+D4Icon                  =showers-day
+D4DateString            =Mon.#CRLF#15 Jul
 D4Tooltip               = None
 
